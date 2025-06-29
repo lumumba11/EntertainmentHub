@@ -1,0 +1,18 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+{% if results %}
+    <ul class="list-group">
+        {% for product in results %}
+            <li class="list-group-item">
+                <a href="#">{{ product.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No products found.</p>
+{% endif %}
+{% endblock %}

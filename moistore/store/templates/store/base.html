@@ -1,0 +1,135 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Entertainment Hub{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #0d6efd, #6610f2);
+        }
+
+        .navbar .navbar-brand, .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .navbar .nav-link:hover {
+            text-decoration: underline;
+            color: #ffc107 !important;
+        }
+
+        .search-form input {
+            border-radius: 20px;
+        }
+
+        .search-form button {
+            border-radius: 20px;
+        }
+
+        footer {
+            background: #343a40;
+            color: #ffffff;
+        }
+
+        footer a {
+            color: #adb5bd;
+        }
+
+        footer a:hover {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        .hero {
+            background-image: url('{% static "images/banner.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">🎬 Entertainment Hub</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="d-flex mx-auto search-form w-50" method="GET" action="{% url 'search' %}">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-warning" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item me-3"><a class="nav-link" href="{% url 'wishlist' %}">💖 Wishlist</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="{% url 'cart' %}">🛒 Cart</a></li>
+                  <!--  <li class="nav-item">
+                        {% if user.is_authenticated %}
+                            <a class="nav-link" href="{% url 'account' %}">👤 {{ user.username }}</a>
+                        {% else %}
+                            <a class="nav-link" href="{% url 'login' %}">👤 Login</a>
+                        {% endif %}
+                    </li>  -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Discover Your Next Favorite Movie or Game</h1>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 mt-auto">
+        <div class="container text-center">
+            <p>&copy; 2025 Entertainment Hub. All rights reserved.</p>
+            <p>
+                <a href="{% url 'contact' %}">Contact</a> |
+                <a href="{% url 'privacy' %}">Privacy Policy</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

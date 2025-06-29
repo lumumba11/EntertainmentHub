@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Add New Product</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Product</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary ms-2">Back to Home</a>
+    </form>
+</div>
+{% endblock %}

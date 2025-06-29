@@ -1,0 +1,46 @@
+<!-- store/templates/store/product_detail.html -->
+{% extends 'store/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg border-0">
+                <div class="row g-0">
+                    <!-- Product Image -->
+                    <div class="col-md-6">
+                        <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="{{ product.title }}">
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div class="card-body">
+                            <h2 class="card-title fw-bold">{{ product.title }}</h2>
+                            <p class="text-secondary mb-1"><span class="fw-semibold">Category:</span> {{ product.category.name }}</p>
+                            <h3 class="text-success fw-bold my-3">${{ product.price }}</h3>
+                            <p class="card-text text-muted">{{ product.description }}</p>
+
+                            <!-- Quantity Selector -->
+                            <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group my-3" style="max-width: 200px;">
+                                    <span class="input-group-text">Qty</span>
+                                    <input type="number" name="quantity" class="form-control" value="1" min="1">
+                                </div>
+
+                                <!-- Buttons -->
+                                <button type="submit" class="btn btn-primary me-2">🛒 Add to Cart</button>
+                                <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-outline-danger">💖 Wishlist</a>
+                            </form>
+
+                            <!-- Back to Shop -->
+                            <a href="{% url 'home' %}" class="btn btn-link mt-3">← Back to Shop</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

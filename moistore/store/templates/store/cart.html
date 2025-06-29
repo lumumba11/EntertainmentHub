@@ -1,0 +1,29 @@
+{% extends 'store/base.html' %}
+{% block title %}Your Cart{% endblock %}
+{% block content %}
+<a href="{% url 'home' %}" class="btn btn-outline-secondary mb-3">← Back to Home</a>
+
+<h2>Your Cart</h2>
+{% if cart_items %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th><th>Qty</th><th>Price</th><th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price }} KES</td>
+            <td>{{ item.total_price }} KES</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h4>Total: <strong>{{ total }} KES</strong></h4>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}

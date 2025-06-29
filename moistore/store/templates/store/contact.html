@@ -1,0 +1,33 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h2>Contact Us</h2>
+    <p>If you have any questions, feedback, or concerns, feel free to reach out to us:</p>
+    
+    <ul class="list-unstyled">
+        <li><strong>Email:</strong> support@entertainmenthub.com</li>
+        <li><strong>Phone:</strong> +254 712 345 678</li>
+        <li><strong>Address:</strong> Moi Avenue, Nairobi, Kenya</li>
+    </ul>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-control" name="name" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Your Email</label>
+            <input type="email" class="form-control" name="email" placeholder="Enter your email">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" name="message" rows="5" placeholder="Your message..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Send Message</button>
+    </form>
+</div>
+{% endblock %}
